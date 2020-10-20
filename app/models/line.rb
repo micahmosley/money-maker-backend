@@ -1,5 +1,5 @@
 class Line < ApplicationRecord
-    belongs_to :team
-    has_many :bets 
+    has_many :bet_lines
+    has_many :bets, through: :bet_lines
     
 end

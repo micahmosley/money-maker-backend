@@ -7,10 +7,11 @@ class SessionsController < ApplicationController
             render json: {error: "Sorry, user with that username does not exist"}
         else 
             if @user.authenticate(params[:password])
-                session[:user_id] = @user.id
-                render json: {user: @user}
+                # session[:user_id] = @user.id
+                create_session            
+                render json: @user
             else 
-                render json: {error: "Sorry, user with that password does not exist"}
+                render json: {error: "Password is incorrect."}
             end
         end 
     end 

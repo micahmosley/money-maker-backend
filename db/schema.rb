@@ -10,55 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_220256) do
+ActiveRecord::Schema.define(version: 2020_10_14_090956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bets", force: :cascade do |t|
-    t.integer "amount"
+  create_table "bet_lines", force: :cascade do |t|
+    t.integer "bet_id"
     t.integer "line_id"
-    t.integer "user_id"
-    t.string "result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "leagues", force: :cascade do |t|
-    t.string "name"
+  create_table "bets", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "bet_type"
+    t.integer "risk"
+    t.float "odds"
+    t.float "current_odds"
+    t.integer "wins"
+    t.string "result"
+    t.integer "legs_left"
+    t.string "atleast_one_winner"
+    t.string "atleast_one_push"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "lines", force: :cascade do |t|
-    t.string "type"
-    t.integer "odds"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "matches", force: :cascade do |t|
-    t.time "time"
-    t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "sports", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.string "team"
+    t.string "opponent"
+    t.string "line_type"
+    t.string "odds"
+    t.integer "spread"
+    t.string "result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.integer "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
