@@ -33,7 +33,7 @@ class BetsController < ApplicationController
 
         ##if bet is lost 
         else 
-            bet.update(result: params[:result])
+            bet.update(result: params[:result], legs_left:0)
         end
     end
 end
